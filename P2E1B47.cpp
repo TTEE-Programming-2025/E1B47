@@ -3,7 +3,7 @@
 #include<conio.h>
 int main(void)
 {
-	int k=3,a;
+	int k=3,a,c,i,j;
 	char letter,letter1;
 	printf("這是個人畫面\n");
 	do
@@ -43,7 +43,14 @@ int main(void)
 		else if(letter=='B' || letter=='b')
 		{
 			system("cls");
-			printf("這是B的形式\n");
+			printf("輸入一個1~9的數字n: ");
+			scanf("%d",&c);
+			for(i=1;i<=c;i++)
+			{
+				for(j=1;j<=c;j++)
+					printf("%d * %d=%3d   ",i,j,i*j);
+				printf("\n");
+			}
 			printf("按任意鍵回到主選單...");
 			getch();
 			system("cls");				
