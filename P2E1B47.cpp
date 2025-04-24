@@ -4,7 +4,7 @@
 int main(void)
 {
 	int k=3,a,c,i,j;
-	char letter,letter1;
+	char letter,letter1,letter2,g,m,n;
 	printf("這是個人畫面\n");
 	do
 	{
@@ -26,7 +26,7 @@ int main(void)
 	getch();
 	system("cls");
 	
-	while(1)
+	do
 	{
 		printf("選單ABC");
 		letter=getch();
@@ -34,7 +34,25 @@ int main(void)
 		if(letter=='A' || letter=='a')
 		{
 			system("cls");
-			printf("這是A的形式\n");
+			do
+			{
+				printf("請輸入一個a~n的字元: ");	
+				scanf(" %c",&letter2);
+				fflush(stdin);
+				if(letter2>='a'&&letter2<='n')
+					for(g=letter2;g>='a';g--)
+					{
+						for(n=g;n>='b';n--)
+							printf(" ");
+						for(m=g;m<=letter2;m++)
+							printf("%c",m);
+						printf("\n");
+					}
+				else
+					printf("輸入錯誤!\n");
+			}
+			while(letter2<'a'||letter2>'n'); 
+			
 			printf("按任意鍵回到主選單...");
 			getch();
 			system("cls");
@@ -43,14 +61,23 @@ int main(void)
 		else if(letter=='B' || letter=='b')
 		{
 			system("cls");
-			printf("輸入一個1~9的數字n: ");
-			scanf("%d",&c);
-			for(i=1;i<=c;i++)
-			{
-				for(j=1;j<=c;j++)
-					printf("%d * %d=%3d   ",i,j,i*j);
-				printf("\n");
+			do
+			{			
+				printf("輸入一個1~9的數字n: ");
+				scanf("%d",&c);
+				if(c>=1&&c<=9)
+					for(i=1;i<=c;i++)
+					{
+						for(j=1;j<=c;j++)
+							printf("%d * %d=%3d   ",i,j,i*j);
+						printf("\n");
+					}
+				else
+				{
+					printf("輸入錯誤!\n");
+				}
 			}
+			while(c<1||c>9);
 			printf("按任意鍵回到主選單...");
 			getch();
 			system("cls");				
@@ -85,7 +112,7 @@ int main(void)
 			while(letter1!='Y' || letter1!='y' );
 				
 		}		
-		
+
 		else
 		{
 			system("cls");
@@ -95,5 +122,5 @@ int main(void)
 			system("cls");			
 		}
 	}
-		
+	while(1);	
 }
