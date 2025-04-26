@@ -3,8 +3,8 @@
 #include<conio.h>
 int main(void)
 {
-	int k=3,a,c,i,j;
-	char letter,letter1,letter2,g,m,n;
+	int k=3,i,j,c;
+	char letter,letter1,letter2,password[4],g,m,n;
 	printf("==========================================================================\n");
 	printf("|*|                                                                    |*|\n");
 	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
@@ -30,27 +30,27 @@ int main(void)
 	printf("|*|             jjjjj                         sssssss                  |*|\n");
 	printf("|*|                                                                    |*|\n");
 	printf("==========================================================================\n");
-	printf("|*|                                                                    |*|\n");
 	printf("|*|                     E1B47 宋哲銘 程式設計作業2                     |*|\n");
-	printf("|*|                                                                    |*|\n");
 	printf("==========================================================================\n");
-	printf("|*|                                                                    |*|\n");
 	printf("|*|                        *按任意鍵以清除螢幕*                        |*|\n");
-	printf("|*|                                                                    |*|\n");
-	printf("==========================================================================\n");
-	
-
-	
+	printf("==========================================================================\n");	
 	getch();
 	system("cls");
 	do
 	{
 		printf("請輸入密碼: ");
-		scanf("%d",&a);
-		if(a!=2025)
+		for(i=0;i<=3;i++)
 		{
+			password[i]=getch();
+			printf("*");
+		}
+		printf("\n");
+		printf("您輸入的是: %c%c%c%c",password[0],password[1],password[2],password[3]);
+		if(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5')
+		{
+			printf("\n");
 			k--;
-			printf("輸入錯誤!您只剩下%d 個機會\n",k);
+			printf("輸入錯誤!您只剩下 %d 次機會\n",k);
 		}
 		if(k==0)
 		{
@@ -58,9 +58,10 @@ int main(void)
 			return 0; 
 		}
 	}
-	while(a!=2025);  
-	
-	printf("歡迎介面");
+	while(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5');  
+	system("cls");
+	printf("歡迎介面\n");  //設計 
+	printf("*按任意鍵以清除螢幕*");
 	getch();
 	system("cls");
 	
@@ -91,19 +92,26 @@ int main(void)
 			do
 			{
 				printf("請輸入一個a~n的字元: ");	
-				scanf(" %c",&letter2);
+				letter2=getche();
 				fflush(stdin);
 				if(letter2>='a'&&letter2<='n')
+				{
+					printf("\n");
 					for(g=letter2;g>='a';g--)
 					{
 						for(n=g;n>='b';n--)
-							printf(" ");  
+							printf(" ");
 						for(m=g;m<=letter2;m++)
 							printf("%c",m);
 						printf("\n");
-					}
+					}					
+				}
+
 				else
-					printf("輸入錯誤!\n");
+				{
+					printf("\n");
+					printf("輸入錯誤!\n");					
+				}
 			}
 			while(letter2<'a'||letter2>'n'); 
 			
@@ -119,13 +127,16 @@ int main(void)
 			{			
 				printf("輸入一個1~9的數字n: ");
 				scanf("%d",&c);
-				if(c>=1&&c<=9)
+				if(c>=1 && c<=9)
+				{
+					printf("\n");
 					for(i=1;i<=c;i++)
 					{
 						for(j=1;j<=c;j++)
 							printf("%d * %d=%3d   ",j,i,i*j);
-						printf("\n");
-					}
+						printf("\n\n");  //兩行間空一行 
+					}					
+				}
 				else
 				{
 					printf("輸入錯誤!\n");
@@ -142,7 +153,7 @@ int main(void)
 			do
 			{
 				system("cls");
-				printf("Continue? (y/n)");
+				printf("Continue? (y/n)");  //設計 
 				letter1=getch();
 				if(letter1=='Y' || letter1=='y')
 				{
