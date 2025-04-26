@@ -3,8 +3,8 @@
 #include<conio.h>
 int main(void)
 {
-	int k=3,i,j,c;
-	char letter,letter1,letter2,password[4],g,m,n;
+	int k=3,i,j,c;//宣告密碼輸入機會、迴圈、乘法表的數字變數 
+	char letter,letter1,letter2,password[4],g,m,n;//宣告主選單、密碼、直角三角形所需的字元變數 
 	printf("==========================================================================\n");
 	printf("|*|                                                                    |*|\n");
 	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
@@ -33,35 +33,43 @@ int main(void)
 	printf("|*|                     E1B47 宋哲銘 程式設計作業2                     |*|\n");
 	printf("==========================================================================\n");
 	printf("|*|                        *按任意鍵以清除螢幕*                        |*|\n");
-	printf("==========================================================================\n");	
+	printf("==========================================================================\n");	//個人介面設計 
 	getch();
-	system("cls");
+	system("cls");//清除當前畫面
+	printf("密碼: 2025\n");//為了方便測試，先顯示密碼 
 	do
 	{
 		printf("請輸入密碼: ");
-		for(i=0;i<=3;i++)
+		for( i=0 ; i<=3 ; i++ ) //增加密碼隱蔽性 
 		{
 			password[i]=getch();
 			printf("*");
 		}
 		printf("\n");
-		printf("您輸入的是: %c%c%c%c",password[0],password[1],password[2],password[3]);
-		if(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5')
+		printf("您輸入的是: %c%c%c%c",password[0],password[1],password[2],password[3]); //確認輸入的密碼 
+		if(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5')//密碼錯誤且輸入密碼機會會遞減 
 		{
 			printf("\n");
-			k--;
+			k--;//原本k=3，減至0時，會跳到下方判斷 
 			printf("輸入錯誤!您只剩下 %d 次機會\n",k);
 		}
-		if(k==0)
+		if(k==0)//機會用完時，結束程式 
 		{
 			printf("已強行結束程式...\n");
 			return 0; 
 		}
 	}
-	while(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5');  
-	system("cls");
-	printf("歡迎介面\n");  //設計 
-	printf("*按任意鍵以清除螢幕*");
+	while(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5');  //輸入密碼正確時，跳出迴圈 
+	system("cls");//這一步是當輸入正確密碼時，不需要顯示正確密碼，以增加隱蔽性 
+	printf("@======================================================@\n");
+	printf("|*|                                                  |*|\n");
+	printf("|*|                     歡迎回來!                    |*|\n"); 
+	printf("|*|                                                  |*|\n");
+	printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
+	printf("|*|                                                  |*|\n");
+	printf("|*|               *按任意鍵進入主選單*               |*|\n"); 
+	printf("|*|                                                  |*|\n");
+	printf("@======================================================@\n");//介面設計 
 	getch();
 	system("cls");
 	
@@ -83,109 +91,148 @@ int main(void)
 		printf("||                               ||\n");
 		printf("||      c.      結束             ||\n");
 		printf("||                               ||\n");
-		printf("###################################\n");
+		printf("###################################\n");//主選單介面設計 
 		letter=getch();
 		
-		if(letter=='A' || letter=='a')
+		if( letter=='A' || letter=='a' )//判斷選項 
 		{
 			system("cls");
 			do
 			{
 				printf("請輸入一個a~n的字元: ");	
-				letter2=getche();
+				letter2=getche();//顯示輸入的字元 
 				fflush(stdin);
-				if(letter2>='a'&&letter2<='n')
+				if(letter2>='a' && letter2<='n')
 				{
-					printf("\n");
-					for(g=letter2;g>='a';g--)
+					printf("\n");//為了好看換了行 
+					for(g=letter2 ; g>='a' ; g--) //三角形需要的行數 
 					{
-						for(n=g;n>='b';n--)
-							printf(" ");
-						for(m=g;m<=letter2;m++)
-							printf("%c",m);
-						printf("\n");
+						for(n=g ; n>='b' ; n--)
+							printf(" ");//印出空格 
+						for(m=g ; m<=letter2 ; m++)
+							printf("%c",m);//每往下一行，字母會從前一個順序的開始印 
+						printf("\n");//換行再繼續印 
 					}					
 				}
 
-				else
+				else//不符合小寫字母的字元 
 				{
 					printf("\n");
 					printf("輸入錯誤!\n");					
 				}
 			}
-			while(letter2<'a'||letter2>'n'); 
-			
-			printf("按任意鍵回到主選單...");
+			while(letter2<'a' || letter2>'n'); //輸入的字元符合條件時，跳出迴圈至主選單 
+			printf("\n\n");//為了好看空一行 
+			printf("@======================================================@\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|               *按任意鍵回到主選單*               |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("@======================================================@\n");//介面設計 
 			getch();
 			system("cls");
 		}
 		
-		else if(letter=='B' || letter=='b')
+		else if(letter=='B' || letter=='b')//判斷選項 
 		{
 			system("cls");
 			do
 			{			
 				printf("輸入一個1~9的數字n: ");
-				scanf("%d",&c);
+				scanf("%d",&c);//輸入數字(需要按enter鍵) 
+				fflush(stdin); /*注意，此時輸入非數字的字元，可能會遇到無限迴圈的結果，
+或是直接印出以數字9為主的乘法表，且再次回到選單b時，即使未輸入數字也會出現乘法表，故需要有清除緩衝區的指令，
+去判斷輸入的字元是否為數字並執行下方的條件敘述 */
 				if(c>=1 && c<=9)
 				{
 					printf("\n");
-					for(i=1;i<=c;i++)
+					for(i=1;i<=c;i++)//印出列 
 					{
-						for(j=1;j<=c;j++)
+						for(j=1;j<=c;j++)//印出行 
 							printf("%d * %d=%3d   ",j,i,i*j);
-						printf("\n\n");  //兩行間空一行 
+						printf("\n\n");  //兩行間空一行，讓乘法表好看一點 
 					}					
 				}
-				else
+				else//遇到非數字或不符合範圍的數字時 
 				{
 					printf("輸入錯誤!\n");
 				}
 			}
-			while(c<1||c>9);
-			printf("按任意鍵回到主選單...");
+			while(c<1 || c>9);//當輸入的數字為1~9其中之一時，跳出迴圈 
+			printf("@======================================================@\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|               *按任意鍵回到主選單*               |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("@======================================================@\n");
 			getch();
 			system("cls");				
 		}
 		
-		else if(letter=='C' || letter=='c')
+		else if(letter=='C' || letter=='c')//判斷選項 
 		{
 			do
 			{
 				system("cls");
-				printf("Continue? (y/n)");  //設計 
-				letter1=getch();
+				printf("@======================================================@\n");
+				printf("|*|                                                  |*|\n");
+				printf("|*|                 Continue?  (y/n)                 |*|\n"); 
+				printf("|*|                                                  |*|\n");
+				printf("@======================================================@\n");
+				letter1=getch();//輸入字元以判斷 
+				fflush(stdin);
 				if(letter1=='Y' || letter1=='y')
 				{
 					system("cls");
-					break;
+					break;//會回到最外圍的do-while迴圈，也就是主選單 
 				}
 				else if(letter1=='N' || letter1=='n')
 				{
 					system("cls");
-					return 0;
+					printf("@======================================================@\n");
+					printf("|*|                                                  |*|\n"); 
+					printf("|*|                  *期待您的到來!*                 |*|\n"); 
+					printf("|*|                                                  |*|\n");
+					printf("@======================================================@\n");
+					return 0;//使程式結束的地方 
 				}		
-				else
+				else//輸入Y、y、N、n以外的字元時,顯示警告訊息 
 				{
 					system("cls");
-					printf("輸入錯誤訊息!\n");
-					printf("按任意鍵回到上一頁...");
+					printf("@======================================================@\n");
+					printf("|*|                                                  |*|\n");
+					printf("|*|                   輸入錯誤訊息!                  |*|\n"); 
+					printf("|*|                                                  |*|\n");
+					printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
+					printf("|*|                                                  |*|\n");
+					printf("|*|                *按任意鍵回到選項c*               |*|\n"); 
+					printf("|*|                                                  |*|\n");
+					printf("@======================================================@\n");
 					getch();
 					system("cls");
 				}	
 			}
-			while(letter1!='Y' || letter1!='y' );
+			while(letter1!='Y' || letter1!='y' ); 
 				
 		}		
 
-		else
+		else//輸入a、b、c、A、B、C以外的字元時，顯示警告訊息 
 		{
 			system("cls");
-			printf("輸入錯誤訊息!\n");
-			printf("按任意鍵回到主選單...");
+			printf("@======================================================@\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|                   輸入錯誤訊息!                  |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|               *按任意鍵回到主選單*               |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("@======================================================@\n");
 			getch();
 			system("cls");			
 		}
 	}
-	while(1);	
+	while(1);	//無窮迴圈 
 }
+/*在編寫本次作業時，我遇到最大的困難是如何在迴圈條件下印出靠右的直角三角形，而到後來我才發現，迴圈的增減情況可以視為一個"計數器"，
+這能決定在每一次迭代的條件下，我能印出多少個空格。此外，我養成了一個習慣，是在每一個scanf、getch()，getche()或getchar()指令的後面，
+一律加fflush(stdin)指令，不好好清除緩衝區的東西會讓程式發生未知的執行錯誤。在本次作業，我覺得能做得更好的地方，是對選單上的每一個選項，
+都用副程式編寫，這也將是下次作業的重要課題 。*/ 
