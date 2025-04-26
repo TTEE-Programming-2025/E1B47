@@ -5,7 +5,44 @@ int main(void)
 {
 	int k=3,a,c,i,j;
 	char letter,letter1,letter2,g,m,n;
-	printf("這是個人畫面\n");
+	printf("==========================================================================\n");
+	printf("|*|                                                                    |*|\n");
+	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
+	printf("|*|                  ii                  mm mm        mm mm            |*|\n");
+	printf("|*|                  ii                  mm  mm      mm  mm            |*|\n");
+	printf("|*|                  ii                  mm    mm  mm    mm            |*|\n");
+	printf("|*|                  ii                  mm      mm      mm            |*|\n");
+	printf("|*|                  ii                  mm              mm            |*|\n");
+	printf("|*|                  ii                  mm              mm            |*|\n");
+	printf("|*|                  ii                  mm              mm            |*|\n");
+	printf("|*|                  ii                  mm              mm            |*|\n");
+	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
+	printf("|*|                                                                    |*|\n");	
+	printf("|*|            jjjjjjjjjjjjjj                 sssssss                  |*|\n");
+	printf("|*|                  jj                     ss       ss                |*|\n");
+	printf("|*|                  jj                    ss         ss               |*|\n");
+	printf("|*|                  jj                      ss                        |*|\n");
+	printf("|*|                  jj                         ss                     |*|\n");
+	printf("|*|                  jj                           ss                   |*|\n");
+	printf("|*|                  jj                              ss                |*|\n");
+	printf("|*|           jj     jj         @@@        ss         ss     ###       |*|\n");
+	printf("|*|            jj    jj         @@@         ss       ss      ###       |*|\n");	
+	printf("|*|             jjjjj                         sssssss                  |*|\n");
+	printf("|*|                                                                    |*|\n");
+	printf("==========================================================================\n");
+	printf("|*|                                                                    |*|\n");
+	printf("|*|                     E1B47 宋哲銘 程式設計作業2                     |*|\n");
+	printf("|*|                                                                    |*|\n");
+	printf("==========================================================================\n");
+	printf("|*|                                                                    |*|\n");
+	printf("|*|                        *按任意鍵以清除螢幕*                        |*|\n");
+	printf("|*|                                                                    |*|\n");
+	printf("==========================================================================\n");
+	
+
+	
+	getch();
+	system("cls");
 	do
 	{
 		printf("請輸入密碼: ");
@@ -22,13 +59,30 @@ int main(void)
 		}
 	}
 	while(a!=2025);  
-	printf("按任意鍵以清除螢幕...");
+	
+	printf("歡迎介面");
 	getch();
 	system("cls");
 	
 	do
 	{
-		printf("選單ABC");
+		printf("###################################\n");
+		printf("||                               ||\n");
+		printf("||      a. 畫出直角三角形        ||\n");
+		printf("||                               ||\n");	
+		printf("||-------------------------------||\n");
+		printf("||===============================||\n");
+		printf("||-------------------------------||\n");		
+		printf("||                               ||\n");		
+		printf("||      b.   顯示乘法表          ||\n");
+		printf("||                               ||\n");	
+		printf("||-------------------------------||\n");
+		printf("||===============================||\n");
+		printf("||-------------------------------||\n");
+		printf("||                               ||\n");
+		printf("||      c.      結束             ||\n");
+		printf("||                               ||\n");
+		printf("###################################\n");
 		letter=getch();
 		
 		if(letter=='A' || letter=='a')
@@ -43,7 +97,7 @@ int main(void)
 					for(g=letter2;g>='a';g--)
 					{
 						for(n=g;n>='b';n--)
-							printf(" ");
+							printf(" ");  
 						for(m=g;m<=letter2;m++)
 							printf("%c",m);
 						printf("\n");
@@ -69,7 +123,7 @@ int main(void)
 					for(i=1;i<=c;i++)
 					{
 						for(j=1;j<=c;j++)
-							printf("%d * %d=%3d   ",i,j,i*j);
+							printf("%d * %d=%3d   ",j,i,i*j);
 						printf("\n");
 					}
 				else
