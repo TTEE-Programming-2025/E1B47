@@ -5,14 +5,24 @@
 #include<time.h>
 #define ROW 9
 #define COL 9
-
-
-
+void random_seat(char seat[ROW][COL])
+{
+	int i,j;
+	printf("//123456789\n");
+	for(i=ROW-1 ; i>=0 ; i--)
+	{
+		printf("%d",i+1);
+		for(j=0 ; j<COL ; j++)
+			printf("%c",seat[i][j]);
+		printf("\n");	
+	}
+	system("pause");
+}
 
 int main()
 {
-	int k=3,i,j,c;
-	char letter,letter1,letter2,password[4],g,m,n;
+	int k=3,i,j,x,y,times=0;
+	char letter,letter1,letter2,password[4],seat[ROW][COL];
 	printf("==========================================================================\n");
 	printf("|*|                                                                    |*|\n");
 	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
@@ -81,6 +91,22 @@ int main()
 	getch();
 	system("cls");
 	
+	for(i=0 ; i<ROW ; i++)
+		for(j=0 ; j<COL ; j++)
+			seat[i][j]='-';
+		
+	srand(time(NULL));
+	while(times<10)
+	{
+		x=rand()%9;
+		y=rand()%9;
+		if(seat[x][y]=='-')
+		{
+			seat[x][y]='*';
+			times++;
+		}
+	}
+	
 	do
 	{
 		printf("----------[Booking System]------------\n");
@@ -90,23 +116,24 @@ int main()
 		printf("|     d. Exit                        |\n");	
 		printf("--------------------------------------\n");
 		letter=getch();		
-		
 		if(letter=='a' || letter=='A')
 		{
-			
+			system("cls");
+			random_seat(seat);
+			system("cls");
 		}
 		
-		if(letter=='b' || letter=='B')
+		else if(letter=='b' || letter=='B')
 		{
 			
 		}
 	
-		if(letter=='c' || letter=='C')
+		else if(letter=='c' || letter=='C')
 		{
 			
 		}
 		
-		if(letter=='d' || letter=='D')
+		else if(letter=='d' || letter=='D')
 		{
 			system("cls");
 		    do
@@ -148,10 +175,23 @@ int main()
 					printf("@======================================================@\n");
 					getch();
 					system("cls");						
-				}
-						
+				}			
 			}while(1);
 		}		
-		
+		else
+		{
+			system("cls");
+			printf("@======================================================@\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|                 Wrong information!               |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|        *Press any to go back to the menu*        |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("@======================================================@\n");
+			getch();
+			system("cls");									
+		}
 	}while(1);
 }
