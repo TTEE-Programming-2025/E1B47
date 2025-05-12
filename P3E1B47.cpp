@@ -1,13 +1,14 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
-#include<string.h>
-#include<time.h>
-#define ROW 9
-#define COL 9
-#define LEN 600
-void print_seats(char seat[ROW][COL])
+#include<string.h> //To use string
+#include<time.h>   //To use random-function
+#define ROW 9      
+#define COL 9      //Size of seats is 9*9
+#define LEN 600    //Maximum of choosing seats
+void print_seats(char seat[ROW][COL])//Seats being apppeared
 {
+	system("cls");
 	int i,j;
 	printf("\\123456789\n");
 	for(i=ROW-1 ; i>=0 ; i--)
@@ -21,7 +22,7 @@ void print_seats(char seat[ROW][COL])
 	system("pause");
 }
 
-void arrange_for_you(char seat[ROW][COL])
+void arrange_for_you(char seat[ROW][COL])//Finding the options cause of different number of people
 {
 	int i,j,x,y,z,k;
 	printf("How many seats do you need? : ");
@@ -105,7 +106,7 @@ void arrange_for_you(char seat[ROW][COL])
 		}		
 	}		
 }
-void satisfied(char seat[ROW][COL])
+void satisfied(char seat[ROW][COL])//Asking for the satisfaction
 {
 	int i,j;
 	char chiose;
@@ -131,7 +132,7 @@ void satisfied(char seat[ROW][COL])
 						seat[i][j]='-'; 
 			break;
 		}
-		else
+		else//Entering wrong char
 		{
 			system("cls");
 			printf("@======================================================@\n");
@@ -149,11 +150,11 @@ void satisfied(char seat[ROW][COL])
 	}
 	while(1);
 }	
-int avalible_seat(int k,int m)
+int avalible_seat(int k,int m)//Confirming the seats which is chosen whether fit in size of seat or not
 {
 	return (k>=1 && k<=ROW && m>=1 && m<=COL);
 }
-void choose_by_yourself(char seat[ROW][COL])
+void choose_by_yourself(char seat[ROW][COL])//Choosing the seats on one's own
 {
 	char choose[LEN],*ptr;
 	int k,m,i,j,valid,len;
@@ -193,7 +194,7 @@ void choose_by_yourself(char seat[ROW][COL])
 		}
 		while(valid!=1);
 }
-int main()
+int main()//main function
 {
 	int k=3,i,j,x,y,times=0;
 	char letter,letter1,letter2,password[4],seat[ROW][COL];
@@ -225,27 +226,27 @@ int main()
 	printf("|*|                           P3E1B47 宋哲銘                           |*|\n");
 	printf("==========================================================================\n");
 	printf("|*|                  *Press any  to clean the screen*                  |*|\n");
-	printf("==========================================================================\n");	
+	printf("==========================================================================\n");	//My personal interface 
 	getch();
 	system("cls");
 	printf("The password is: 2025\n"); 
-	do
+	do//password
 	{
 		printf("Enter the password: ");
-		for( i=0 ; i<=3 ; i++ )  
+		for( i=0 ; i<=3 ; i++ )  //To protect privacy
 		{
 			password[i]=getch();
-			printf("*");
+			printf("*");    
 		}
 		printf("\n");
-		printf("The password you entered: %c%c%c%c",password[0],password[1],password[2],password[3]); 
+		printf("The password you entered: %c%c%c%c",password[0],password[1],password[2],password[3]); //To test what password is entered
 		if(password[0]!='2' || password[1]!='0' || password[2]!='2' || password[3]!='5') 
 		{
 			printf("\n");
 			k--;
 			printf("Incorrect password!\n");
 		}
-		if(k==0)
+		if(k==0)//The end of running
 		{
 			printf("No chance to enter the password!\n");
 			return 0;
@@ -280,7 +281,7 @@ int main()
 			times++;
 		}
 	}
-	
+	//Choosing random 10 seats
 	do
 	{
 		printf("----------[Booking System]------------\n");
@@ -293,31 +294,30 @@ int main()
 		if(letter=='a' || letter=='A')
 		{
 			system("cls");
-			print_seats(seat);
+			print_seats(seat);//Calling the subprogram
 			system("cls");
 		}
 		
 		else if(letter=='b' || letter=='B')
 		{
 			system("cls");
-			arrange_for_you(seat);
-			system("cls");
+			arrange_for_you(seat); //Calling the subprogram 
 			print_seats(seat);
 			system("cls");	
-			satisfied(seat);
+			satisfied(seat); //Calling the subprogram 
 		}
 	
 		else if(letter=='c' || letter=='C')
 		{
 			system("cls");
-			choose_by_yourself(seat);
+			choose_by_yourself(seat); //Calling the subprogram 
 			system("cls");
-			print_seats(seat);
+			print_seats(seat);  
 			system("cls");
 			satisfied(seat);
 		}
 		
-		else if(letter=='d' || letter=='D')
+		else if(letter=='d' || letter=='D')//Recognizing whether end to running or not
 		{
 			system("cls");
 		    do
@@ -327,13 +327,13 @@ int main()
 				printf("|      Continue?  (y/n)      |\n");
 				printf("|                            |\n");
 				printf("------------------------------\n");
-				letter1=getch();
+				letter1=getch();  
 						
 				if(letter1=='y' || letter1=='Y')
 				{
 					system("cls");
 					break;
-				}
+				}//Continuing running
 						
 				else if(letter1=='n' || letter1=='N')
 				{
@@ -343,7 +343,7 @@ int main()
 					printf("|*|            *Thanks for coming today!*            |*|\n"); 
 					printf("|*|                                                  |*|\n");
 					printf("@======================================================@\n");
-					return 0;
+					return 0;//The end
 				}	
 				else
 				{
@@ -379,3 +379,5 @@ int main()
 		}
 	}while(1);
 }
+/*本次的程式作業困難無比，但也歸咎於我的時間安排不妥、對程式的練習量還遠遠不夠。唯一慶幸的是，我發現了副程式真的提升了程式的可讀性，
+我以後會善加利用。最後，我該好好反省自己在程式編寫這方面，是否有得到該有的提升，還有如何規劃練習的時間。 */ 
