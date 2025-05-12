@@ -5,7 +5,7 @@
 #include<time.h>
 #define ROW 9
 #define COL 9
-void random_seat(char seat[ROW][COL])
+void available_seats(char seat[ROW][COL])
 {
 	int i,j;
 	printf("//123456789\n");
@@ -16,6 +16,69 @@ void random_seat(char seat[ROW][COL])
 			printf("%c",seat[i][j]);
 		printf("\n");	
 	}
+	system("pause");
+}
+
+void arrange_for_you(char seat[ROW][COL])
+{
+	int i,j,x,y,k;
+	printf("How many seats do you need? : ");
+	scanf("%d",&k);
+	
+	if(k>=1 && k<=3)
+	{
+		if(k==1)
+		{
+			while(1)
+			{
+				x=rand()%(9-(k-1));
+				y=rand()%9;
+				if(seat[y][x]=='-')
+				{
+					seat[y][x]='@';
+					break;
+				}
+			}						
+		}
+		else if(k==2)
+		{
+			while(1)
+			{
+				x=rand()%(9-(k-1));
+				y=rand()%9;
+				if(seat[y][x]=='-' && seat[y][x+1]=='-')
+				{
+					seat[y][x]='@';
+					seat[y][x+1]='@';
+					break;
+				}
+			}					
+		}
+		else if(k==3)
+		{
+			while(1)
+			{
+				x=rand()%(9-(k-1));
+				y=rand()%9;
+				if(seat[y][x]=='-' && seat[y][x+1]=='-' && seat[y][x+2]=='-')
+				{
+					seat[y][x]='@';
+					seat[y][x+1]='@';
+					seat[y][x+2]='@';
+					break;
+				}
+			}									
+		}	
+	} 
+		
+	printf("//123456789\n");
+	for(i=ROW-1 ; i>=0 ; i--)
+	{
+		printf("%d",i+1);
+		for(j=0 ; j<COL ; j++)
+			printf("%c",seat[i][j]);
+		printf("\n");	
+	}	
 	system("pause");
 }
 
@@ -119,13 +182,15 @@ int main()
 		if(letter=='a' || letter=='A')
 		{
 			system("cls");
-			random_seat(seat);
+			available_seats(seat);
 			system("cls");
 		}
 		
 		else if(letter=='b' || letter=='B')
 		{
-			
+			system("cls");
+			arrange_for_you(seat);
+			system("cls");	
 		}
 	
 		else if(letter=='c' || letter=='C')
