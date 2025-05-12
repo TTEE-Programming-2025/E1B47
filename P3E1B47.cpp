@@ -8,7 +8,7 @@
 void available_seats(char seat[ROW][COL])
 {
 	int i,j;
-	printf("//123456789\n");
+	printf("\\123456789\n");
 	for(i=ROW-1 ; i>=0 ; i--)
 	{
 		printf("%d",i+1);
@@ -21,7 +21,7 @@ void available_seats(char seat[ROW][COL])
 
 void arrange_for_you(char seat[ROW][COL])
 {
-	int i,j,x,y,k;
+	int i,j,x,y,z,k;
 	printf("How many seats do you need? : ");
 	scanf("%d",&k);
 	
@@ -70,8 +70,39 @@ void arrange_for_you(char seat[ROW][COL])
 			}									
 		}	
 	} 
-		
-	printf("//123456789\n");
+	else if(k==4)
+	{
+		while(1)
+		{
+			z=rand()%2;
+			
+			if(z==0)
+			{
+				x=rand()%(9-(k-1));
+				y=rand()%9;	
+				if(seat[y][x]=='-' && seat[y][x+1]=='-' && seat[y][x+2]=='-' && seat[y][x+3]=='-')
+				{
+					seat[y][x]='@';
+					seat[y][x+1]='@';
+					seat[y][x+2]='@';
+					seat[y][x+3]='@';
+					break;
+				}
+			}
+			else if(z==1)
+			{
+				if(seat[y][x]=='-' && seat[y][x+1]=='-' && seat[y+1][x]=='-' && seat[y+1][x+1]=='-')
+				{
+					seat[y][x]='@';
+					seat[y][x+1]='@';
+					seat[y+1][x]='@';
+					seat[y+1][x+1]='@';
+					break;
+				}
+			}				
+		}		
+	}		
+	printf("\\123456789\n");
 	for(i=ROW-1 ; i>=0 ; i--)
 	{
 		printf("%d",i+1);
@@ -81,6 +112,51 @@ void arrange_for_you(char seat[ROW][COL])
 	}	
 	system("pause");
 }
+
+void satisfied(char seat[ROW][COL])
+{
+	int i,j;
+	char chiose;
+	do
+	{
+		printf("Are you satisfied to your seats? (y/n)");
+		chiose=getch();
+		if(chiose=='y' || chiose=='Y')
+		{
+			system("cls");
+			for(i=0 ; i<ROW ; i++)
+				for(j=0 ; j<COL ; j++)
+					if(seat[i][j]=='@')
+						seat[i][j]='*';			
+			break;
+		}	
+		else if(chiose=='n' || chiose=='N')
+		{
+			system("cls");
+			for(i=0 ; i<ROW ; i++)
+				for(j=0 ; j<COL ; j++)
+					if(seat[i][j]=='@')
+						seat[i][j]='-';
+			break;
+		}
+		else
+		{
+			system("cls");
+			printf("@======================================================@\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|                 Wrong information!               |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
+			printf("|*|                                                  |*|\n");
+			printf("|*|      *Press any to go back to the chiose *       |*|\n"); 
+			printf("|*|                                                  |*|\n");
+			printf("@======================================================@\n");
+			getch();
+			system("cls");			
+		}
+	}
+	while(1);
+}	
 
 int main()
 {
@@ -191,6 +267,7 @@ int main()
 			system("cls");
 			arrange_for_you(seat);
 			system("cls");	
+			satisfied(seat);
 		}
 	
 		else if(letter=='c' || letter=='C')
@@ -235,7 +312,7 @@ int main()
 					printf("|*|                                                  |*|\n");
 					printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
 					printf("|*|                                                  |*|\n");
-					printf("|*|        *Press any to go back to chiose d*        |*|\n"); 
+					printf("|*|        *Press any to go back to chiose *         |*|\n"); 
 					printf("|*|                                                  |*|\n");
 					printf("@======================================================@\n");
 					getch();
