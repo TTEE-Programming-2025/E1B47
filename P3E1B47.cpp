@@ -5,7 +5,8 @@
 #include<time.h>
 #define ROW 9
 #define COL 9
-void available_seats(char seat[ROW][COL])
+#define LEN 600
+void print_seats(char seat[ROW][COL])
 {
 	int i,j;
 	printf("\\123456789\n");
@@ -14,8 +15,9 @@ void available_seats(char seat[ROW][COL])
 		printf("%d",i+1);
 		for(j=0 ; j<COL ; j++)
 			printf("%c",seat[i][j]);
-		printf("\n");	
+		printf("\n");	 
 	}
+	printf("\n");
 	system("pause");
 }
 
@@ -102,17 +104,7 @@ void arrange_for_you(char seat[ROW][COL])
 			}				
 		}		
 	}		
-	printf("\\123456789\n");
-	for(i=ROW-1 ; i>=0 ; i--)
-	{
-		printf("%d",i+1);
-		for(j=0 ; j<COL ; j++)
-			printf("%c",seat[i][j]);
-		printf("\n");	
-	}	
-	system("pause");
 }
-
 void satisfied(char seat[ROW][COL])
 {
 	int i,j;
@@ -136,7 +128,7 @@ void satisfied(char seat[ROW][COL])
 			for(i=0 ; i<ROW ; i++)
 				for(j=0 ; j<COL ; j++)
 					if(seat[i][j]=='@')
-						seat[i][j]='-';
+						seat[i][j]='-'; 
 			break;
 		}
 		else
@@ -148,7 +140,7 @@ void satisfied(char seat[ROW][COL])
 			printf("|*|                                                  |*|\n");
 			printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
 			printf("|*|                                                  |*|\n");
-			printf("|*|      *Press any to go back to the chiose *       |*|\n"); 
+			printf("|*|      *Press any to go back to the chiose*        |*|\n"); 
 			printf("|*|                                                  |*|\n");
 			printf("@======================================================@\n");
 			getch();
@@ -157,7 +149,50 @@ void satisfied(char seat[ROW][COL])
 	}
 	while(1);
 }	
+int avalible_seat(int k,int m)
+{
+	return (k>=1 && k<=ROW && m>=1 && m<=COL);
+}
+void choose_by_yourself(char seat[ROW][COL])
+{
+	char choose[LEN],*ptr;
+	int k,m,i,j,valid,len;
+		do
+		{
+			valid=1;
+			printf("Choose the seats that you want(ex: 1-5,5-6,7-8): ");
+			fflush(stdin);
+			scanf("%s",choose);	
+			ptr=strtok(choose,",");
+			len = strlen(choose);
 
+			while(ptr!=NULL)
+			{
+				if(sscanf(ptr,"%d-%d",&k,&m)==2 && avalible_seat(k,m))
+				{
+					if(seat[k-1][m-1]=='*')
+					{
+						printf("Seat %d-%d is chosen.\n",k,m);
+						valid=0;
+						continue;
+					}
+					else if (seat[k-1][m-1]=='-')
+					{
+						seat[k-1][m-1]='@';
+					}
+				}	
+				else
+				{
+					valid=0;
+					break;
+				}
+				ptr=strtok(NULL,",");			
+			}		
+			if(valid==0)
+				printf("Incorrect form of input. Please try again.\n");
+		}
+		while(valid!=1);
+}
 int main()
 {
 	int k=3,i,j,x,y,times=0;
@@ -258,7 +293,7 @@ int main()
 		if(letter=='a' || letter=='A')
 		{
 			system("cls");
-			available_seats(seat);
+			print_seats(seat);
 			system("cls");
 		}
 		
@@ -266,13 +301,20 @@ int main()
 		{
 			system("cls");
 			arrange_for_you(seat);
+			system("cls");
+			print_seats(seat);
 			system("cls");	
 			satisfied(seat);
 		}
 	
 		else if(letter=='c' || letter=='C')
 		{
-			
+			system("cls");
+			choose_by_yourself(seat);
+			system("cls");
+			print_seats(seat);
+			system("cls");
+			satisfied(seat);
 		}
 		
 		else if(letter=='d' || letter=='D')
@@ -312,7 +354,7 @@ int main()
 					printf("|*|                                                  |*|\n");
 					printf("|*|==||==||==||==||==||==||==||==||==||==||==||==||==|*|\n");
 					printf("|*|                                                  |*|\n");
-					printf("|*|        *Press any to go back to chiose *         |*|\n"); 
+					printf("|*|        *Press any to go back to chiose  *        |*|\n"); 
 					printf("|*|                                                  |*|\n");
 					printf("@======================================================@\n");
 					getch();
