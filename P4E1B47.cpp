@@ -16,10 +16,11 @@ void enter_grades(struct data *ptr,int *n);
 void display_grades(struct data *ptr,int n);
 void find_grades(struct data *ptr,int n);
 void grades_ranking(struct data *ptr,int n);
+void exit(void);
 int main()
 {
 	int i,k=3,n=0;
-	char password[4],letter1;
+	char password[4],letter1,letter2;
 	printf("==========================================================================\n");
 	printf("|*|                                                                    |*|\n");
 	printf("|*|            iiiiiiiiiiiiii            mm              mm            |*|\n");
@@ -105,30 +106,50 @@ int main()
 		{
 			case('a'): 
 				enter_grades(ptr,&n);
+				exit();
 				break;
 				
 			case('b'): 
 				display_grades(ptr,n);
+				exit();
 				break;				
 				
 			case('c'): 
 				find_grades(ptr,n);
+				exit();
 				break;
 				
 			case('d'): 
 				grades_ranking(ptr,n);
+				exit();
 				break;	
 
 			case('e'): 
-				
+				do
+				{
+					system("cls");
+					printf("確定離開？ (y/n)");
+					letter2=getch();		
+					
+					switch(letter2)
+					{
+						case('y'):
+							return 0;
+							
+						case('n'):
+							system("cls");
+							break;	
+							
+						default:
+							break;	
+					}			
+				}while(letter2!='n');
 				break;
 					
 			default:
 				system("cls");
 				printf("輸入錯誤訊息!\n\n");
-				printf("按任意鍵回到主選單...");
-				getch();
-				system("cls");										
+				exit();					
 		}	
 	}
 	while(1);
@@ -179,10 +200,7 @@ void enter_grades(struct data *ptr,int *n)//a
 		ptr->avg=sum/3.0;		
 		ptr++;
 	}
-	printf("\n");
-	printf("按任意鍵回到主選單...");
-	getch();
-	system("cls");
+
 }
 
 void display_grades(struct data *ptr,int n)//b 
@@ -195,10 +213,6 @@ void display_grades(struct data *ptr,int n)//b
 		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
 		ptr++;
 	}
-	printf("\n");
-	printf("按任意鍵回到主選單...");
-	getch();
-	system("cls");
 }
 
 void find_grades(struct data *ptr,int n)
@@ -226,17 +240,14 @@ void find_grades(struct data *ptr,int n)
 	}
 	else
 		printf("此身份信息不存在...\n\n");
-	printf("按任意鍵回到主選單...");
-	getch();
-	system("cls");
 }
 
 void grades_ranking(struct data *ptr,int n)
 {
+	system("cls");
 	struct data temp;
 	float avg1,avg2;
-	int i,j;
-	
+	int i,j;	
 	for(i=0 ; i<n-1;i++)
 		for(j=0 ; j<n-1-i ; j++)
 		{
@@ -254,8 +265,11 @@ void grades_ranking(struct data *ptr,int n)
 	for(i=0 ; i<n ;i++)
 		printf("%s     %s     %d       %d       %d       %.1f\n"
 		,student[i].name,student[i].ID,student[i].math,student[i].physics,student[i].eng,student[i].avg);
-		
+}
+
+void exit(void)
+{
 	printf("\n按任意鍵回到主選單...");
 	getch();
-	system("cls");
+	system("cls");	
 }
