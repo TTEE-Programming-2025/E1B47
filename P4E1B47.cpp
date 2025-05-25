@@ -15,7 +15,7 @@ struct data
 void enter_grades(struct data *ptr,int *n);
 void display_grades(struct data *ptr,int n);
 void find_grades(struct data *ptr,int n);
-
+void grades_ranking(struct data *ptr,int n);
 int main()
 {
 	int i,k=3,n=0;
@@ -116,7 +116,7 @@ int main()
 				break;
 				
 			case('d'): 
-				
+				grades_ranking(ptr,n);
 				break;	
 
 			case('e'): 
@@ -179,7 +179,8 @@ void enter_grades(struct data *ptr,int *n)//a
 		ptr->avg=sum/3.0;		
 		ptr++;
 	}
-	printf("\n按任意鍵回到主選單...");
+	printf("\n");
+	printf("按任意鍵回到主選單...");
 	getch();
 	system("cls");
 }
@@ -194,7 +195,8 @@ void display_grades(struct data *ptr,int n)//b
 		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
 		ptr++;
 	}
-	printf("\n按任意鍵回到主選單...");
+	printf("\n");
+	printf("按任意鍵回到主選單...");
 	getch();
 	system("cls");
 }
@@ -220,10 +222,39 @@ void find_grades(struct data *ptr,int n)
 	if(invalid==0)
 	{
 		printf("姓名       學號       數學     物理     英文     平均成績\n");
-		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
+		printf("%s     %s     %d       %d       %d       %.1f\n\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
 	}
 	else
 		printf("此身份信息不存在...\n\n");
+	printf("按任意鍵回到主選單...");
+	getch();
+	system("cls");
+}
+
+void grades_ranking(struct data *ptr,int n)
+{
+	struct data temp;
+	float avg1,avg2;
+	int i,j;
+	
+	for(i=0 ; i<n-1;i++)
+		for(j=0 ; j<n-1-i ; j++)
+		{
+			avg1=(float)(student[j].math+student[j].physics+student[j].eng)/3.0;
+			avg2=(float)(student[j+1].math+student[j+1].physics+student[j+1].eng)/3.0;
+
+			if(avg1<avg2)
+            {
+                temp=student[j];
+                student[j]=student[j+1];
+                student[j+1]=temp;
+            }					
+		}
+	printf("姓名       學號       數學     物理     英文     平均成績\n");
+	for(i=0 ; i<n ;i++)
+		printf("%s     %s     %d       %d       %d       %.1f\n"
+		,student[i].name,student[i].ID,student[i].math,student[i].physics,student[i].eng,student[i].avg);
+		
 	printf("\n按任意鍵回到主選單...");
 	getch();
 	system("cls");
