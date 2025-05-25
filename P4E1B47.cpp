@@ -9,10 +9,12 @@ struct data
 	int math;
 	int physics;
 	int eng;
+	float avg;
 }student[10],*ptr;
 
 void enter_grades(struct data *ptr,int *n);
 void display_grades(struct data *ptr,int n);
+void find_grades(struct data *ptr,int n);
 
 int main()
 {
@@ -110,7 +112,7 @@ int main()
 				break;				
 				
 			case('c'): 
-				
+				find_grades(ptr,n);
 				break;
 				
 			case('d'): 
@@ -122,6 +124,7 @@ int main()
 				break;
 					
 			default:
+				system("cls");
 				printf("輸入錯誤訊息!\n\n");
 				printf("按任意鍵回到主選單...");
 				getch();
@@ -133,6 +136,7 @@ int main()
 
 void enter_grades(struct data *ptr,int *n)//a
 {
+	float sum;
 	int i;
 	system("cls");
 	do
@@ -167,6 +171,14 @@ void enter_grades(struct data *ptr,int *n)//a
 		}while(1);
 			ptr++;
 	}	
+	ptr=&student[0]; //重置指標 
+	for(i=0 ; i<*n; i++)//先在a計算平均成績 
+	{
+		sum=0.0;
+		sum=(float)(ptr->math+ptr->physics+ptr->eng);
+		ptr->avg=sum/3.0;		
+		ptr++;
+	}
 	printf("\n按任意鍵回到主選單...");
 	getch();
 	system("cls");
@@ -175,16 +187,43 @@ void enter_grades(struct data *ptr,int *n)//a
 void display_grades(struct data *ptr,int n)//b 
 {
 	system("cls");
-	float avg,sum;
 	int i;
 	printf("姓名       學號       數學     物理     英文     平均成績\n");
 	for(i=0 ; i<n; i++)
-	{
-		sum=(float)(ptr->math+ptr->physics+ptr->eng);
-		avg=sum/3.0;		
-		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,avg);
+	{		
+		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
 		ptr++;
 	}
+	printf("\n按任意鍵回到主選單...");
+	getch();
+	system("cls");
+}
+
+void find_grades(struct data *ptr,int n)
+{
+	int invalid=1;
+	char search[10];
+	system("cls");
+	printf("請輸入要搜尋的姓名: ");
+	scanf("%s",search);
+	
+	for(int i=0 ; i<n ; i++)
+	{
+		if(strcmp(search,ptr->name)==0)
+		{
+			invalid=0;
+			break;			
+		}		
+		else	
+			ptr++; 
+	}
+	if(invalid==0)
+	{
+		printf("姓名       學號       數學     物理     英文     平均成績\n");
+		printf("%s     %s     %d       %d       %d       %.1f\n",ptr->name,ptr->ID,ptr->math,ptr->physics,ptr->eng,ptr->avg);
+	}
+	else
+		printf("此身份信息不存在...\n\n");
 	printf("\n按任意鍵回到主選單...");
 	getch();
 	system("cls");
